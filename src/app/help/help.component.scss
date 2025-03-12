@@ -1,0 +1,14 @@
+a {
+    height: fit-content;
+    width: fit-content;
+    align-self: flex-end;
+}
+
+section {
+    display: flex;
+    flex-direction: column;
+}
+
+span {
+    color: #2aaae2; 
+}
