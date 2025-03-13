@@ -1,9 +1,11 @@
 <div>
 <app-shared></app-shared>
-<app-contacts></app-contacts>
-<router-outlet></router-outlet> 
-<a [routerLink]="['imprint']" >Imprint</a>
-<a [routerLink]="['privacy-policy']" >Privacy Policy</a>
-<a [routerLink]="['help-page']">Help</a>
+<div class="content_wrapper">
+    <router-outlet></router-outlet> 
+    <!-- <app-add-contact-dialog></app-add-contact-dialog> -->
+</div>
+<!-- <a [routerLink]="['imprint']" >Impressum</a>
+<a [routerLink]="['privacy-policy']" >Datenschutz</a> -->
 </div>
 <!-- wird begrenzt auf 1440px -->
+

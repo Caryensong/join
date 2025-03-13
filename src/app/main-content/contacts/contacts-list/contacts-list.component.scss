@@ -1,0 +1,88 @@
+@use '../../../../styles.scss' as styles;
+
+.list_wrapper {
+    width: 40%;
+    padding: 20px 30px;
+    height: 100vh;
+    overflow-y: scroll;
+    height: calc(100vh - 96px);
+}
+
+.btn_wrapper {
+    width: 100%;
+
+    .btn_plain_color {
+        width: 100%;
+    }
+}
+
+.single_letter {
+    padding: 20px;
+    border-bottom: 1px solid rgb(185, 185, 185);
+}
+
+.contact_info_wrapper {
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    padding: 20px 10px;
+    gap: 32px;
+    cursor: pointer;
+}
+
+.avatar {
+    border-radius: 50%;
+    padding: 10px;
+    background-color: styles.$low_green;
+}
+
+.email {
+    color: styles.$light_blue;
+}
+
+
+.custom-dialog {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 100;
+    animation: slideInFromRight 125ms ease-out forwards;
+}
+.overlay_content{
+    background-color: rgba(0, 0, 0, 0.349); 
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 100%;
+    height: 100vh;
+    z-index: 1000;
+}
+
+@keyframes slideInFromRight {
+    0% {
+        transform: translateX(100%);
+    }
+
+    100% {
+        transform: translateX(0);
+    }
+}
+
+@keyframes slideOutToRight {
+    0% {
+        transform: translateX(0);
+    }
+
+    100% {
+        transform: translateX(100%);
+    }
+}
+
+.dialog-closed {
+    animation: slideOutToRight 0.5s ease-in forwards;
+}

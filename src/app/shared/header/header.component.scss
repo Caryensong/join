@@ -1,72 +1,116 @@
 @use './../../../styles.scss' as *;
 
-section {
-    header {
-        width: 100%;
-        height: 96px;
-        background-color: #fff;
-        display: flex;
-        align-items: center;
-        justify-content: space-around;
-        box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.2);
+header {
+    width: calc(100% - 250px);
+    height: 96px;
+    margin-left: 250px;
+    padding: 0 50px;
+    background-color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.2);
+    position: fixed;
+    top: 0;
 
-        p {
-            font-size: 20px;
-            font-weight: 400;
+    p {
+        font-size: 20px;
+        font-weight: 400;
+    }
+
+    .logo_container {
+        display: none;
+        width: 32px;
+        height: 39px;
+    }
+
+    .header_profil_container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 104px;
+
+        .help_btn:hover {
+            scale: 1.1;
         }
 
-        .header_profil_container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            width: 104px;
+        button {
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            border: 2.5px solid #000000;
+            color: $light_blue;
+            font-size: 20px;
+            font-weight: 600;
+            cursor: pointer;
 
-            .profile_btn:hover {
-                scale: 1.1;
+            &:hover {
+                background-color: #0000002f;
+            }
+        }
+
+        .dropdown_menu {
+            position: absolute;
+            top: 76px;
+            right: -30px;
+            background-color: $lightblack;
+            color: #fff;
+            border-radius: 18px 0px 18px 18px;
+            padding: 10px;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around;
+            min-width: 150px;
+            height: 158px;
+            z-index: 2;
+
+            .dropdown_help {
+                display: none;
             }
 
-            button {
-                width: 56px;
-                height: 56px;
-                border-radius: 50%;
-                border: 2.5px solid #000000;
-                color: $light_blue;
-                font-size: 20px;
-                font-weight: 600;
+            a {
+                padding: 8px;
+                width: 100%;
                 cursor: pointer;
+                color: #fff;
 
                 &:hover {
-                    background-color: #0000002f;
-                }
-            }
-
-            .dropdown_menu {
-                position: absolute;
-                top: 76px;
-                right: -30px;
-                background-color: $lightblack;
-                color: #fff;
-                border-radius: 18px 0px 18px 18px;
-                padding: 10px;
-                box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-                display: flex;
-                flex-direction: column;
-                justify-content: space-around;
-                min-width: 150px;
-                height: 158px;
-                z-index: 2;
-
-                a {
-                    padding: 8px;
-                    width: 100%;
-                    cursor: pointer;
-                    color: #fff;
-
-                    &:hover {
-                        background-color: #2a3d59;
-                    }
+                    background-color: #2a3d59;
                 }
             }
         }
     }
+}
+
+@media (max-width:800px) {
+
+    .header_title {
+        display: none;
+    }
+
+    .logo_container {
+        display: block !important;
+        width: 32px;
+        height: 39px;
+    }
+
+    .help_btn {
+        display: none;
+    }
+
+    .dropdown_help {
+        display: block !important;
+    }
+
+    header {
+        margin-left: 0;
+        width: 100%;
+        .header_profil_container {
+            justify-content: flex-end;
+        }
+    }
+
+
+
 }

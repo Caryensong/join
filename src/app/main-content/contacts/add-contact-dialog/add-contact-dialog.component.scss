@@ -1,0 +1,170 @@
+@use './../../../../styles.scss' as *;
+
+section {
+    height: 592px;
+    width: 100%;
+    max-width: 1212px;
+    display: flex;
+    align-items: center;
+
+    .headline {
+        background-color: $lightblack;
+        padding: 50px;
+        height: 100%;
+        width: 45%;
+        border-radius: 25px 0 0 25px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+
+        h1 {
+            color: #fff;
+            font-size: 2.9vw;
+        }
+
+        h3 {
+            color: #fff;
+            font-size: 1.4vw;
+        }
+
+        .blueline {
+            background-color: $light_blue;
+            width: 90px;
+            height: 2px;
+            margin-top: 10px;
+        }
+    }
+
+    .add_contacts_content {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        padding: 50px;
+        height: 100%;
+        width: 65%;
+        background-color:#fff;
+        border-radius: 0 25px 25px 0;
+
+        .contact_icon{
+            padding-left: 20px;
+            padding-right: 40px;
+        }
+    }
+
+    form {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        width: 422px;
+        height: 215px;
+
+        .input_content {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+
+            input {
+                padding: 13px;
+                border-radius: 10px;
+                border: 1px solid #00000036;
+                font-size: 20px;
+                outline: none;
+                transition: border 125ms ease;
+
+                &:focus {
+                    border: 1px solid $light_blue;
+                    box-shadow: 0px 0px 5px rgba(42, 171, 226, 0.151);
+                }
+                
+                &.input-error{
+                    border: 1px solid $light_blue;
+    
+                &::placeholder{
+                    color: rgba(211, 0, 0, 0.534);
+                }
+            }}
+
+            img {
+                position: absolute;
+                right: 0;
+                padding-right: 20px;
+            }
+        }
+
+        .btn_container {
+            display: flex;
+            gap: 15px;
+
+            .close_btn{
+                position: absolute;
+                top:-330px;
+                left:400px;
+                cursor: pointer;
+
+                img{
+                    padding: 3px;
+                }
+                img:hover{
+                    background-color: #00000013;
+                    border-radius: 50%;
+                    
+                }
+            }
+
+
+            .cancel_btn {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                gap: 10px;
+                border-radius: 7px;
+                font-size: 20px;
+                border: 1px solid $lightblack;
+                padding: 7px 12px 7px 12px;
+                cursor: pointer;
+                transition: all 125ms ease;
+
+                &:hover {
+                    border: 1px solid $light_blue;
+                    color: $light_blue;
+                    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.178);
+                }
+                
+                &:hover img {
+                    filter: brightness(0) saturate(100%) invert(60%) sepia(90%) saturate(312%) hue-rotate(163deg) brightness(95%) contrast(88%);
+                }
+            }
+
+            .create_btn {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                gap: 10px;
+                background-color: $lightblack;
+                border: none;
+                border-radius: 7px;
+                color: #fff;
+                font-size: 20px;
+                cursor: pointer;
+                padding: 7px 12px 7px 12px;
+                transition: all 125ms ease;
+
+                &:hover {
+                   background-color: $light_blue;
+                   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.178);
+
+                }
+            }
+        }
+    }
+}
+
+.custom-dialog-content {
+    padding: 20px;
+    border-radius: 15px;
+    max-width: 100%; 
+  }
+  

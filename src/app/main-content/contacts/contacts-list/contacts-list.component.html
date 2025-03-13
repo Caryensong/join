@@ -1,7 +1,32 @@
-
 <section>
-    <h2>contacts list</h2>
-    @for (item of firebase.contactsList; track $index ) {
-        <p>{{item.firstname}} - {{item.lastname}}</p>
-    }
+    <div class="list_wrapper">
+        <div class="btn_wrapper">
+            <button (click)="openAddNewContacts()" class="btn_plain_color">
+                <h4>Add new contact</h4><img src="../assets/btns-icons/person_add.svg" alt="">
+            </button>
+        </div>
+
+        <div *ngIf="isDialogOpen" class="overlay_content" (click)="closeDialog()">
+            <div class="custom-dialog">
+              <app-add-contact-dialog (closeDialogEvent)="closeDialog()" (click)="stopPropagation($event)"></app-add-contact-dialog>
+            </div>
+          </div>
+          
+
+        @for (item of firebase.orderedContactsList; track $index) {
+        @if($index === 0 || item.firstname.charAt(0) !== firebase.orderedContactsList[$index - 1].firstname.charAt(0) )
+        {
+        <h4 class="single_letter">{{ item.firstname.charAt(0) }}</h4>
+        }
+        <div class="contact_info_wrapper" (click)="openDialogDetails()">
+            <div class="avatar">
+                <p>{{item.firstname.charAt(0)}}{{item.lastname.charAt(0)}}</p>
+            </div>
+            <div class="contact_info">
+                <p class="name">{{item.firstname}} {{item.lastname}}</p>
+                <p class="email">{{item.email}}</p>
+            </div>
+        </div>
+        }
+    </div>
 </section>

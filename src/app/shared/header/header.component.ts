@@ -4,7 +4,7 @@ import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-header',
-  standalone:true,
+  standalone: true,
   imports: [CommonModule, RouterLink],
   templateUrl: './header.component.html',
   styleUrl: './header.component.scss'
@@ -12,11 +12,11 @@ import { RouterLink } from '@angular/router';
 export class HeaderComponent {
   menuOpen = false;
 
-  toggleMenu(){
+  toggleMenu() {
     this.menuOpen = !this.menuOpen;
   }
-
-  openLegalNotice(){}
-  openPrivacyPolicy(){}
-  logout(){}
+  openHelp() {}
+  openLegalNotice() { }
+  openPrivacyPolicy() { }
+  logout() { }
 }

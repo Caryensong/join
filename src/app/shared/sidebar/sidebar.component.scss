@@ -1,0 +1,57 @@
+.container {
+    display: flex;
+    height: 100vh;
+}
+
+.sidebar {
+    width: 250px;
+    background-color: #2A3647;
+    color: white;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.logo {
+    padding-top: 100px;
+}
+
+.sidebar ul {
+    list-style-type: none;
+    padding: 0;
+    padding-top: 100px;
+}
+
+.sidebar li {
+    padding-top: 10px;
+}
+
+.sidebar ul li {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.sidebar ul li a {
+    color: white;
+    text-decoration: none;
+    display: block;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.sidebar ul li:hover {
+    background-color: #2A3D59;
+}
+
+.legal-position {
+    display: flex;
+    flex-direction: column;
+    align-items: end;
+}
+
+.legal-position a {
+    text-decoration: none;
+    color: white;
+}
