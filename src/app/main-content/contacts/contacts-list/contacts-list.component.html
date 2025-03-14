@@ -28,7 +28,9 @@
                     </div>
                     <div class="contact_info">
                         <p class="name">{{item.firstname}} {{item.lastname}}</p>
-                        <p class="email">{{item.email}}</p>
+                        <p class="email">
+                            {{item.email.length > 8 ? (item.email.slice(0, 8) + '...') : item.email}}
+                        </p>
                     </div> 
                     <button (click)="openEditDialog($index)">edit contact</button>
                 </div>

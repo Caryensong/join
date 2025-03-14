@@ -2,7 +2,7 @@ import { Component, EventEmitter, inject, Input, Output } from '@angular/core';
 import { FirebaseService } from '../../../shared/service/firebase.service';
 import { FormsModule, NgForm } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { log } from 'console';
+
 
 @Component({
   selector: 'app-edit-contact-dialog',
@@ -14,7 +14,6 @@ export class EditContactDialogComponent {
   firebase = inject(FirebaseService);
   @Output() closeDialogEvent = new EventEmitter<void>();
   @Input() selectedContactIndex: number | null = null;
-  // isEdited: boolean = false;
   formSubmitted: boolean = false;
   contactId: string = "";
   editedContact = {
@@ -40,7 +39,6 @@ export class EditContactDialogComponent {
   }
 
   editContact(index: number) {
-    // this.isEdited = true;
     const nameParts = this.editedContact.fullname.trim().split(' ');
     this.editedContact.firstname = this.toUpperCaseName(nameParts[0]);
     this.editedContact.lastname = this.toUpperCaseName(nameParts.slice(1).join(' ') || '');
@@ -65,8 +63,8 @@ export class EditContactDialogComponent {
     return str.charAt(0).toUpperCase() + str.slice(1).toLowerCase();
   }
 
-  // closeDialog() {
-  //   this.closeDialogEvent.emit(); 
-  // }
+  closeDialog() {
+    this.closeDialogEvent.emit(); 
+  }
 
 }
