@@ -15,8 +15,6 @@ export class HeaderComponent {
   toggleMenu() {
     this.menuOpen = !this.menuOpen;
   }
-  openHelp() {}
-  openLegalNotice() { }
-  openPrivacyPolicy() { }
+
   logout() { }
 }
