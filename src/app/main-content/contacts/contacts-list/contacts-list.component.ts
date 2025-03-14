@@ -15,6 +15,7 @@ export class ContactsListComponent {
   firebase = inject(FirebaseService);
   isDialogOpen = false;  
   isEditDialogOpen = false;
+  selectedContactIndex: number | null = null;
 
   openDialogDetails() {
     console.log("opening dialog details");
@@ -25,7 +26,10 @@ export class ContactsListComponent {
   }
 
   openEditDialog(index: number) {
-    this.isEditDialogOpen = true;
+      this.isEditDialogOpen = true;
+      this.selectedContactIndex = index;
+      console.log(this.selectedContactIndex);
+      
   }
 
   stopPropagation(event: Event) {

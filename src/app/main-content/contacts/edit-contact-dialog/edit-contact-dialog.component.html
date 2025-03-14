@@ -19,8 +19,9 @@
                 <input type="text" [(ngModel)]="editedContact.fullname" name="fullname"
                     [placeholder]="fullname.invalid && fullname.touched ? 'Please enter your name' : 'Name'"
                     #fullname="ngModel" [ngClass]="{'input-error': fullname.invalid && fullname.touched}" required>
-                    {{editedContact.fullname}}
+                    {{selectedContactIndex !== null ? firebase.orderedContactsList[selectedContactIndex].firstname : ''}}
                 <img src="./assets/contact/person.svg" alt="Person">
+                {{selectedContactIndex !== null ? firebase.orderedContactsList[selectedContactIndex].lastname : ''}}
             </label>
 
             <label class="input_content">
