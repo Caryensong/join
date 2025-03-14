@@ -1,7 +1,4 @@
 <section>
 <app-contacts-list [openDetails]="openDetails"></app-contacts-list>
- @If(openDetails) {
-    <app-contact-details></app-contact-details>
- }
-
+<app-contact-details *ngIf="openDetails"></app-contact-details>
 </section>
