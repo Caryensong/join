@@ -1,0 +1,66 @@
+@use '../../../../styles.scss' as styles;
+
+.content {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.headline {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 30px;
+}
+
+.divider {
+    background-color: styles.$light_blue;
+    width: 3px;
+    height: 59px;
+}
+
+.main_info {
+    height: 120px;
+    display: flex;
+    justify-content: flex-start;
+    gap: 54px;
+    align-items: center;
+    margin-top: 32px;
+}
+
+.fullname {
+    display: flex;
+    flex-direction: column;
+}
+
+.icons {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 24px;
+}
+
+.actions {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+}
+
+.details {
+    margin-top: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    >.bold_text {
+        font-weight: 400;
+    }
+    >.blue_color {
+        color: styles.$light_blue;
+    }
+}
+
+h4 {
+    padding-top: 24px;
+    padding-bottom: 24px;
+}
