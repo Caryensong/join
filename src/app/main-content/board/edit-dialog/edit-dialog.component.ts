@@ -22,6 +22,18 @@ export class EditDialogComponent{
   subtaskInputFocused: boolean = false;
   subtaskInput: string = '';
   subtasks: { name: string, isCompleted: boolean }[] = []; // Array für Subtasks
+  dropdownVisible: boolean = false;
+  checkboxActive = false;
+
+  assignContact(contactId: string) {
+    this.checkboxActive = !this.checkboxActive;
+    this.item?.assignedToUserId?.push(contactId);
+    console.log(this.item?.assignedToUserId);
+  }
+
+  toggleDropdown() {
+    this.dropdownVisible = !this.dropdownVisible;
+  }
 
   ngOnInit() {
     if (this.item?.priority) {
@@ -34,8 +46,6 @@ export class EditDialogComponent{
     }
   }
   
-  
-
   selectPriority(priority: string) {
     this.selectedPriority = priority;
     if (this.item) {
@@ -45,21 +55,19 @@ export class EditDialogComponent{
 
   saveEditedTask(taskForm: NgForm) {
     if (this.item?.id && this.item?.date) {
-      const [year, month, day] = this.item.date.split('-');
-      this.item.date = `${day}/${month}/${year}`;
-  
-      console.log('Speichere Aufgabe:', this.item);
+      console.log('Vor Update:', this.item.date); // Debugging
   
       this.firebase.updateTaskStatus(this.item.id, {
         title: this.item.title,
         description: this.item.description,
-        date: this.item.date,
-        priority: this.selectedPriority,  // Speichere ausgewählte Priorität
+        date: this.item.date,  
+        priority: this.selectedPriority,  
         assignedToUserId: this.item.assignedToUserId,
         status: this.item.status,
         category: this.item.category,
         subtasks: this.item.subtasks
       }).then(() => {
+        console.log('Nach Update:', this.item?.date); // Debugging
         console.log('Aufgabe erfolgreich aktualisiert!');
         this.closeDialog();
       }).catch((error) => {
@@ -67,7 +75,7 @@ export class EditDialogComponent{
       });
     }
   }
-
+  
   closeDialog() {
     this.closeDialogEvent.emit();
   }
@@ -81,8 +89,13 @@ export class EditDialogComponent{
 addSubtask() {
   if (this.subtaskInput.trim()) {
     const newSubtask = { subtask: this.subtaskInput.trim(), isCompleted: false };
-    // Verwende die non-null Assertion (Achtung: hier wird davon ausgegangen, dass `this.item` immer definiert ist)
-    this.item!.subtasks!.push(newSubtask);
+    
+    // Wenn 'this.item' und 'subtasks' vorhanden sind, füge Subtask hinzu
+    if (this.item && this.item.subtasks) {
+      this.item.subtasks.push(newSubtask);
+    } else {
+      console.error('Item or subtasks is undefined');
+    }
     this.subtaskInput = ''; // Eingabefeld leeren
   }
 }

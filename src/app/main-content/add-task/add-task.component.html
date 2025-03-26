@@ -5,7 +5,7 @@
             <div class="left_content">
                 <label for="taskTitle">Title <span class="red">*</span></label>
                 <input type="text" id="taskTitle" name="title" placeholder="Enter a title" [(ngModel)]="newTask.title" required #title="ngModel">
-                @if (!title.valid && (title.touched || addTask.submitted)) {
+                @if (!title.valid && (title.touched)) {
                     <span class="error_message">This field is required</span>
                 }
 
@@ -15,7 +15,7 @@
 
                 <label for="dueDate">Due date <span class="red">*</span></label>
                 <input type="date" id="date" name="date" [min]="todaysDate" [(ngModel)]="newTask.date" required #date="ngModel"> 
-                @if (!date.valid && (date.touched || addTask.submitted)) {
+                @if (!date.valid && (date.touched)) {
                     <span class="error_message">This field is required</span>
                 }
             </div>
@@ -58,21 +58,23 @@
                     <div class="dropdown_menu" *ngIf="dropdownVisible" (click)="$event.stopPropagation()">
                         @if(firebase.orderedContactsList) {
                             @for (item of firebase.orderedContactsList; track $index) {      
-                                <div class="one_contact">
+                                <div class="one_contact"  (click)="assignContact(item)">
                                     <div class="contact_info">
                                         <div class="avatar" [ngStyle]="{'background-color': item.color}">
                                             <p>{{item.firstname.charAt(0)}}{{item.lastname.charAt(0)}}</p>
                                         </div>
                                         <p class="name">{{item.fullname.length > 32 ? (item.fullname.slice(0, 32) + '...') : item.fullname}}</p>    
                                     </div>
-                                    <img src="./assets/tasks/checkbox-unchecked.svg" alt="checkbox unchecked" [ngClass]="{ 'checked': checkboxActive }">
+                                    <img  src="./assets/tasks/checkbox-unchecked.svg" alt="checkbox unchecked" 
+                                         [ngClass]="{ 'checked': isSelected(item) }">
                                 </div>                                                                             
                             } @empty {
                             <div>data loading</div>
                             }
                         }
                     </div>
-                    <div class="selected_contacts" *ngIf="checkboxActive">
+                    
+                    <!-- <div class="selected_contacts" *ngIf="checkboxActive">
                         @if(firebase.orderedContactsList) {
                             @for (item of firebase.orderedContactsList; track $index) {      
                                         <div class="avatar" [ngStyle]="{'background-color': item.color}">
@@ -82,20 +84,26 @@
                             <div>data loading</div>
                             }
                         }
+                    </div> -->
+                </div>
+                <div class="selected-contacts" *ngIf="selectedContacts.length > 0 && !dropdownVisible" >
+                    <div class="selected_contacts ">
+                        <div class="avatar" *ngFor="let contact of selectedContacts" [ngStyle]="{'background-color': contact.color}">
+                            <p>{{contact.firstname.charAt(0)}}{{contact.lastname.charAt(0)}}</p>
+                        </div>
                     </div>
                 </div>
-
-                <label for="taskCategory">Category <span class="red">*</span></label>
+               <label for="taskCategory">Category <span class="red">*</span></label>
                 <select id="taskCategory" name="category" [(ngModel)]="newTask.category" required #category="ngModel">
                     <option value="" disabled selected>Select task category</option>
                     <option value="Technical Task">Technical Task</option>
                     <option value="User Story">User Story</option>
                 </select>
-                @if (!category.valid && (category.touched || addTask.submitted)) {
+                @if (!category.valid && (category.touched)) {
                     <span class="error_message">This field is required</span>
-                }
+                } 
 
-            <label for="subtasksTitle">Subtasks</label>
+               <label for="subtasksTitle">Subtasks</label>
                             <div class="input-container">
                                 <input id="subtask-input" class="subtask-input" [(ngModel)]="subtaskInput"
                                     name="subtaskInput" placeholder="Add new subtask" (keyup.enter)="addSubtask()"
@@ -131,7 +139,7 @@
                                                 src="assets/tasks/delete.svg" alt="Delete"></button>
                                     </div>
                                 </li>
-                            </ul>
+                            </ul> 
 
             </div>
         </div>

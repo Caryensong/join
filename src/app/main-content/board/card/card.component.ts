@@ -54,11 +54,14 @@ export class CardComponent {
   closeDialog() {
     this.closeDialogEvent.emit();
   }
- 
+  
   openEditDialog(item: TaskInterface){
     this.selectedItem = item;
     this.isDialogOpen = true;
-    console.log(this.selectedItem);
+  }
+  
+   closeEditDialog(){
+    this.isDialogOpen = false; 
   }
 
   stopPropagation(event: Event) {

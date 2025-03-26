@@ -23,7 +23,7 @@ export class AddTaskComponent {
   selectedPriority: string = 'medium';
   dropdownVisible = false;
   checkboxActive = false;
-  selectedContacts: string[] = [];  //dass ich das unten anzeigen kann
+  selectedContacts: ContactInterface[] = []; //dass ich das unten anzeigen kann
   newTaskAdded: boolean = false;
   subtaskInputFocused: boolean = false;
   subtasks: { name: string, isEditing: boolean }[] = []; // Array für Subtasks
@@ -58,12 +58,18 @@ export class AddTaskComponent {
 
   submitForm(ngform: NgForm) {
     this.newTask.priority = this.selectedPriority;
+    this.newTask.assignedToUserId = this.selectedContacts.map(contact => contact.id).filter((id): id is string => id !== undefined); // Add selected contacts' IDs to the task
+    this.newTask.subtasks = this.subtasks.map(subtask => ({ subtask: subtask.name, isCompleted: false })); // Add subtasks to the task
+
     if (ngform.valid) { // Only check if the form is valid
-      this.firebase.addTaskToData(this.newTask);
-      this.newTaskAdded = true;
-      console.log(this.newTask); // Log only when the task is valid and added
-    } 
-  }
+        this.firebase.addTaskToData(this.newTask); // Save the task to the database
+        this.newTaskAdded = true;
+        console.log(this.newTask); // Log the task for debugging
+        this. clearFormular(ngform); // Reset the form after submission
+        this.selectedContacts = []; // Clear selected contacts
+        this.subtasks = []; // Clear subtasks
+    }
+}
 
   showReport() {
     setTimeout(() => {
@@ -71,7 +77,6 @@ export class AddTaskComponent {
     }, 5000);
   }
 
-  //falls ich es mit klick irgendwohin auf der Seite verschwinden lassen mag
   dismissReport() {    
     this.newTaskAdded = false;
   }
@@ -79,6 +84,22 @@ export class AddTaskComponent {
   clearFormular(ngform: NgForm) {
     ngform.reset(); 
     this.selectedPriority = 'medium';
+  }
+
+  assignContact(contact: ContactInterface) {
+    const index = this.selectedContacts.findIndex(c => c.id === contact.id);
+    if (index === -1) {
+      this.selectedContacts.push(contact); // Add contact if not already selected
+    } else {
+      this.selectedContacts.splice(index, 1); // Remove contact if already selected
+    }
+  }
+
+  isSelected(contact: any): boolean {
+    return this.selectedContacts.some(c => c.id === contact.id);
+  }
+  submitPrio() {
+    console.log("Ausgewählte Priorität:", this.selectedPriority);
   }
 
 

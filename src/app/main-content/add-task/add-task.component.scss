@@ -2,6 +2,12 @@
     color: red;
 }
 
+.section_wrapper {
+    padding-right: 100px;
+    padding-left: 100px;
+    padding-top: 20px;
+}
+
 form {
     display: flex;
     flex-direction: column;
@@ -10,7 +16,7 @@ form {
 .upper_form {
     display: flex;
     align-items: flex-start;
-    height: 424px;
+    height: auto;
     gap: 42px;
 }
 
@@ -41,7 +47,7 @@ form {
 .right_content {
     display: flex;
     flex-direction: column;
-    height: 633px;
+    height: 530px;
     width: 440px;
 }
 

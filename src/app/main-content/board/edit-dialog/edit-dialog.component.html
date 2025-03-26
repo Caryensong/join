@@ -16,17 +16,17 @@
 
             <p>Title</p>
             <label class="input_content">
-                <input type="text" name="title" id="" placeholder="Enter a title" value="{{item.title}}">
+                <input type="text" name="title" placeholder="Enter a title" [(ngModel)]="item.title">
+
             </label>
             <p>Description</p>
             <label class="input_content">
-                <input type="text" name="title" id="" placeholder="Enter a description" value="{{item.description}}">
+                <input type="text" name="description" placeholder="Enter a description" [(ngModel)]="item.description">
             </label>
 
             <div class="date_prio_content">
                 <label class="input_content" for="dueDate">Due date
-                    <input type="date" id="dueDate" [value]="item.date">
-
+                    <input type="date" id="dueDate" [value]="item.date" [(ngModel)]="item.date">
                 </label>
             </div>
             <div class="date_prio_content">
@@ -75,27 +75,45 @@
             </div>
 
             <div class="assigned_content">
-                <p class="title2">Assigned To:</p>
+                <div class="select_contacts" (click)="toggleDropdown()" (click)="$event.stopPropagation()">
+                    <span class="like_placeholder" [ngClass] = "{ 'white' : dropdownVisible }">Select contacts to assign</span>
+                    <img src="./assets/tasks/dropdown_arrow.svg" alt="little arrow" [ngClass]="{ 'rotate' : dropdownVisible }">
+                </div>
+                <div class="dropdown_menu" *ngIf="dropdownVisible" (click)="$event.stopPropagation()">
+                    @if(firebase.orderedContactsList) {
+                        @for (item of firebase.orderedContactsList; track $index) {      
+                            <div class="one_contact">
+                                <div class="contact_info" (click)="item.id && assignContact(item.id)" >
+                                    <div class="avatar" [ngStyle]="{'background-color': item.color}">
+                                        <p>{{item.firstname.charAt(0)}}{{item.lastname.charAt(0)}}</p>
+                                    </div>
+                                    <p class="name">{{item.fullname.length > 32 ? (item.fullname.slice(0, 32) + '...') : item.fullname}}</p>    
+                                </div>
+                                <img src="./assets/tasks/checkbox-unchecked.svg" alt="checkbox unchecked" [ngClass]="{ 'checked': checkboxActive }">
+                            </div>                                                                             
+                        } @empty {
+                        <div>data loading</div>
+                        }
+                    }
+                </div>
                 <div class="members_content">
                     <div class="assigned_to">
                         @if(item.assignedToUserId && item.assignedToUserId.length > 0) {
-                        @for (userId of item.assignedToUserId; track $index) {
-                        @for (contact of firebase.orderedContactsList; track $index) {
-                        @if(contact.id === userId) {
-                        <div class="person_box">
-                            <div class="color_icon" [ngStyle]="{'background-color': contact.color}">
-                                <p>{{contact.firstname.charAt(0)}}{{contact.lastname.charAt(0)}}</p>
-                            </div>
-                            <p>{{contact.fullname| titlecase }}</p>
-                        </div>
-                        }
-                        }
-                        }
+                            @for (userId of item.assignedToUserId; track $index) {
+                                @for (contact of firebase.orderedContactsList; track $index) {
+                                    @if(contact.id === userId) {
+                                    <div class="person_box">
+                                        <div class="color_icon" [ngStyle]="{'background-color': contact.color}">
+                                            <p>{{contact.firstname.charAt(0)}}{{contact.lastname.charAt(0)}}</p>
+                                        </div>
+                                    </div>
+                                    }
+                                }
+                            }
                         } @else {
                         <p>no users assigned</p>
                         }
                     </div>
-
                 </div>
             </div>
 
@@ -129,7 +147,7 @@
                       <li *ngFor="let subtask of item.subtasks; let i = index" class="subtask-item">
                         <span class="subtask-circle"></span>
                         <span *ngIf="!subtask.isCompleted">{{ subtask.subtask }}</span>
-                        <input class="subtask-input-edit" *ngIf="subtask.isCompleted" [(ngModel)]="subtask.subtask"
+                        <input class="subtask-input-edit" *ngIf="subtask.isCompleted || !subtask.isCompleted" [(ngModel)]="subtask.subtask"
                                id="subtask-input-{{i}}" (blur)="saveSubtask(i)" (keyup.enter)="saveSubtask(i)" placeholder="{{ subtask.subtask }}" />
                         <div class="subtask-actions">
                           <button type="button" class="edit-button" (click)="editSubtask(i)">
@@ -150,7 +168,7 @@
 
 <!-- save btn -->
 
-            <div class="save_edit_content">
+            <div class="save_edit_content" (click)="saveEditedTask(taskForm)">
                 <div class="edit_box">
                     <p>Ok</p>
                     <img src="./assets/tasks/check.svg" alt="save">

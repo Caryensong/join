@@ -152,6 +152,8 @@ form{
 .assigned_content {
     width: 100%;
     padding-top: 10px;
+    display: flex;
+    flex-direction: column;
 }
 
 .members_content {
@@ -173,7 +175,11 @@ form{
     display: flex;
     gap: 15px;
     align-items: center;
-    padding: 0px 0px 0px 20px;
+    padding: 0px 0px 0px 10px;
+
+    .person_box:first-child {
+        padding: 0;
+    }
 
     .color_icon {
         background-color: rgb(12, 170, 117);
@@ -187,6 +193,64 @@ form{
         justify-content: center;
     }
 }
+
+.assigned_to {
+    display: flex;
+}
+
+.dropdown_menu {
+    background-color: white;
+    border: 1px solid #d1d1d1;
+    border-radius: 10px;
+    z-index: 30;
+    padding: 12px 16px;
+    max-height: 200px;
+    overflow-y: scroll;
+}
+
+.one_contact {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 16px;
+    height: 56px;
+    font-size: 20px;
+    &:hover{
+        cursor: pointer;
+    }
+    >.contact_info {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 16px;
+    }
+}
+
+.avatar {
+    height: 42px;
+    width: 42px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    align-items: center;
+    font-size: 12px;
+    color: white;
+}
+
+.btn_plain {
+    font-size: 20px;
+    box-sizing: border-box;
+    &:hover {
+        >img {
+            content: url(/assets/tasks/close_blue.svg);
+        }
+    }
+}
+
+.checked {
+        content: url(/assets/tasks/checkbox-checked.svg);
+    }
 
 // subtasks_content
 .subtasks_content {

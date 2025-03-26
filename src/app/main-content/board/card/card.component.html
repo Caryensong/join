@@ -92,9 +92,9 @@
     </div>
 
        <!-- Open Edit Dialog -->
-       <div *ngIf="isDialogOpen" class="overlay_content" (click)="closeDialog()">
+       <div *ngIf="isDialogOpen" class="overlay_content" (click)="closeEditDialog()">
         <div class="custom-dialog">
-            <app-edit-dialog [item]="selectedItem" (closeDialogEvent)="closeDialog()" (click)="stopPropagation($event)"></app-edit-dialog>
+            <app-edit-dialog [item]="selectedItem" (closeDialogEvent)="closeEditDialog()" (click)="stopPropagation($event)"></app-edit-dialog>
         </div>
     </div>
 
