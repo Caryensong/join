@@ -1,4 +1,4 @@
-<section class="section_wrapper" (click)="hideDropdown()">
+<section class="section_wrapper" (click)="hideDropdown()" (click)="dismissReport()" >
     <h1>Add Task</h1>
     <form #addTask="ngForm" (ngSubmit)="submitForm(addTask)">
         <div class="upper_form">
@@ -152,7 +152,7 @@
                     <img src="./assets/tasks/close-black.svg" alt="x icon">
                 </button>
                 
-                <button type="submit" class="btn_bold">
+                <button type="submit" class="btn_bold" (click)="showReport()" >
                     <span>Create Task</span>
                     <svg width="25" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <mask id="mask0_71766_5971" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="25" height="25">
@@ -166,4 +166,9 @@
             </div>
         </div>
     </form>
+
+    <div class="btn_plain_color report" [ngClass] = "{ 'show_report' : newTaskAdded }">
+        <span>Task added to board</span>
+        <img src="./assets/tasks/board_icon.svg" alt="">
+    </div>
 </section>

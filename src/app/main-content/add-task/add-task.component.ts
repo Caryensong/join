@@ -71,6 +71,16 @@ export class AddTaskComponent {
     }
 }
 
+  showReport() {
+    setTimeout(() => {
+      this.newTaskAdded = false;
+    }, 5000);
+  }
+
+  dismissReport() {    
+    this.newTaskAdded = false;
+  }
+
   clearFormular(ngform: NgForm) {
     ngform.reset(); 
     this.selectedPriority = 'medium';
