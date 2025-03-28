@@ -9,7 +9,9 @@ import { TaskInterface } from '../task.interface';
   templateUrl: './task-card.component.html',
   styleUrl: './task-card.component.scss'
 })
+
 export class TaskCardComponent {
+
   @Input()
   item!: TaskInterface; 
   firebase = inject(FirebaseService);

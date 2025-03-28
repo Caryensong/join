@@ -12,7 +12,7 @@
     }
 </div>
 <div class="content_wrapper">
-    <div class="assigned_to">
+    <!-- <div class="assigned_to">
         @if(item.assignedToUserId && item.assignedToUserId.length > 0) {
             @for (userId of item.assignedToUserId; track $index) {
                 <div class="avatar_wrapper">
@@ -26,7 +26,38 @@
                 </div>
             } 
         }
-    </div>
+    </div> -->
+
+    
+    <div class="content_wrapper">
+        <div class="assigned_to">
+          <!-- Überprüfen, ob assignedToUserId vorhanden und nicht leer ist -->
+          <div *ngIf="item.assignedToUserId && item.assignedToUserId.length > 0 && item.assignedToUserId.length < 4">
+            <!-- Iteriere durch die User-IDs und finde die zugehörigen Kontakte -->
+            <div *ngFor="let userId of item.assignedToUserId; let i = index">
+              <div class="avatar_wrapper">
+                <!-- Finde den Kontakt anhand der UserId -->
+                <div *ngFor="let contact of firebase.orderedContactsList; let j = index">
+                  <div *ngIf="contact.id === userId">
+                    <div class="avatar" [ngStyle]="{'background-color': contact.color}">
+                      <p>{{ contact.firstname.charAt(0) }}{{ contact.lastname.charAt(0) }}</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+        </div>
+      
+            <!-- Zeige maximal 3 Kontakte an und zeige die restlichen an -->
+            <div *ngIf="item.assignedToUserId && item.assignedToUserId.length > 0 && item.assignedToUserId.length >= 4">
+              <p>+ {{ item.assignedToUserId.length - 3 }} weitere</p>
+            </div>
+          
+        </div>
+      </div>
+      
+      
+
     <div class="priority">
         @if (item.priority === "urgent") {
             <img src="./assets/tasks/Prio alta.svg" alt="">
