@@ -1,16 +1,13 @@
 <section *ngIf="item" class="delete_content">
-    
     <h4>Are you sure you want to delete <strong>{{item.title}} ?</strong></h4>
-        <div class="btn_container">
-            <button class="cancel_btn" (click)="closeDialog()">
-                No
-                <img src="./assets/contact/Close.svg" alt="cancel">
-            </button>
-
-            <button class="create_btn" (click)="deleteItem()">
-                Yes
-                <img src="./assets/contact/check.svg" alt="Create">
-            </button>
-        </div>
-
+    <div class="btn_container">
+        <button class="cancel_btn" (click)="closeDialog()">
+            No
+            <img src="./assets/contact/Close.svg" alt="cancel">
+        </button>
+        <button class="create_btn" (click)="deleteItem()">
+            Yes
+            <img src="./assets/contact/check.svg" alt="Create">
+        </button>
+    </div>
 </section>

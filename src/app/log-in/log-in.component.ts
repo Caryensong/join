@@ -110,6 +110,7 @@ export class LogInComponent {
       .then(() => {
         this.loginError = ''; // Clear any previous errors
         this.loginSuccess.emit(); // Emit successful login
+        this.userLoggedIn = true;
         this.router.navigate(['/']); // Navigate to the home page
       })
       .catch((error) => {

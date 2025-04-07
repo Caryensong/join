@@ -1,51 +1,56 @@
-<div class="logo_aniamtion">
-    <img src="./assets/icons/logo_dark.svg" alt="Logo">
-</div>
-<section>
-    <div class="header_content">
-        <div class="signin_content d_none">
-            <p>Not a Join user ?</p>
-            <button class="dark_btn" (click)="signUp()" >Sign up</button>
-        </div>
+
+    <div class="logo_aniamtion">
+        <img src="./assets/icons/logo_dark.svg" alt="Logo">
     </div>
-    <div class="d_none login_content">
-        <div class="title">
-            <h1>Log in</h1>
-            <div class="blue_line"></div>
-        </div>
-        <form #loginForm="ngForm">
-            <label class="input_content">
-                <input type="email" [(ngModel)]="login.email" name="email" [placeholder]="'Email'" #email="ngModel"
-                    [ngClass]="{'input-error': email.invalid && email.touched}" required
-                    pattern="[a-z0-9._%+\-]+@[a-z0-9\-]+\.[a-z]{2,}$" minlength="4">
-                <img src="./assets/contact/mail.svg" alt="mail">
-            </label>
-            <label class="input_content">
-                <input [type]="passwordVisible ? 'text' : 'password'" [(ngModel)]="login.password" name="password"
-                    [placeholder]="'Password'" #password="ngModel" (input)="passwordTyped = true"
-                    [ngClass]="{'input-error': password.invalid && password.touched}" required minlength="4">
-                <img class="visibility_icon" [src]="passwordVisible ? './assets/login/visibility.svg' : (passwordTyped ? './assets/login/visibility_off.svg' : './assets/login/lock.svg')"
-                    alt="toggle visibility" (click)="togglePasswordVisibility()">
-            </label>
-            <p class="error-color" *ngIf="(email.invalid && email.touched) || (password.invalid && password.touched)">
-                Check your email and password. Please try again.
-            </p>
-            <p class="error-color" *ngIf="loginError && !(email.invalid || password.invalid)">
-                {{ loginError }}
-            </p>
-            <div class="btn_content">
-                <button (click)="loginUser()" class="dark_btn btn_box">Log in</button>
-                <button (click)="loginAsGuest()" class="light_btn btn_box">Guest Log in</button>
+    <section>
+        <div class="header_content">
+            <div class="signin_content d_none">
+                <p>Not a Join user ?</p>
+                <button class="dark_btn" (click)="signUp()" >Sign up</button>
             </div>
-        </form>
+        </div>
+        <div class="d_none login_content">
+            <div class="title">
+                <h1>Log in</h1>
+                <div class="blue_line"></div>
+            </div>
+            <form #loginForm="ngForm">
+                <label class="input_content">
+                    <input type="email" [(ngModel)]="login.email" name="email" [placeholder]="'Email'" #email="ngModel"
+                        [ngClass]="{'input-error': email.invalid && email.touched}" required
+                        pattern="[a-z0-9._%+\-]+@[a-z0-9\-]+\.[a-z]{2,}$" minlength="4">
+                    <img src="./assets/contact/mail.svg" alt="mail">
+                </label>
+                <label class="input_content">
+                    <input [type]="passwordVisible ? 'text' : 'password'" [(ngModel)]="login.password" name="password"
+                        [placeholder]="'Password'" #password="ngModel" (input)="passwordTyped = true"
+                        [ngClass]="{'input-error': password.invalid && password.touched}" required minlength="4">
+                    <img class="visibility_icon" [src]="passwordVisible ? './assets/login/visibility.svg' : (passwordTyped ? './assets/login/visibility_off.svg' : './assets/login/lock.svg')"
+                        alt="toggle visibility" (click)="togglePasswordVisibility()">
+                </label>
+                <p class="error-color" *ngIf="(email.invalid && email.touched) || (password.invalid && password.touched)">
+                    Check your email and password. Please try again.
+                </p>
+                <p class="error-color" *ngIf="loginError && !(email.invalid || password.invalid)">
+                    {{ loginError }}
+                </p>
+                <div class="btn_content">
+                    <button (click)="loginUser()" class="dark_btn btn_box">Log in</button>
+                    <button (click)="loginAsGuest()" class="light_btn btn_box">Guest Log in</button>
+                </div>
+            </form>
+        </div>
+        <div class="signin_content_respo">
+            <p>Not a Join user ?</p>
+            <button class="dark_btn" (click)="signUp()">Sign up</button>
+        </div>
+        <div class="imprint_content">
+            <a (click)="navigateToImprint()">Legal notice</a>
+            <a (click)="navigateToPrivacyPolicy()">Privacy Policy</a>
+        </div>
+    </section>
+    <div class="loading_overlay">
+        <div class="spinner"></div>
     </div>
-    <div class="signin_content_respo">
-        <p>Not a Join user ?</p>
-        <button class="dark_btn" (click)="signUp()">Sign up</button>
-    </div>
-    <div class="imprint_content">
-        <a (click)="navigateToImprint()">Legal notice</a>
-        <a (click)="navigateToPrivacyPolicy()">Privacy Policy</a>
-    </div>
-</section>
+
 
