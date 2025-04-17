@@ -88,6 +88,8 @@ export class FirebaseService {
   unsubscribeOrderedList: Unsubscribe = () => {};
 
   constructor() {
+    this.initializeContacts();
+    this.initializeTasks();
     // Initialize Firestore listeners
     this.unsubscribe = this.orderedListQuery();
     this.unsubscribe = this.getTasksList();
@@ -258,4 +260,55 @@ export class FirebaseService {
   }
 
   //#endregion
+
+
+
+
+
+
+  // #region vorlage 
+  async initializeContacts() {
+    try {
+      const contactsRef = collection(this.firebase, "contacts");
+      this.dummyData.forEach(async (element) => {
+        await setDoc(doc(contactsRef), {
+          email: element.email,
+          fullname: `${element.firstname} ${element.lastname}`,
+          firstname: element.firstname,
+          lastname: element.lastname,
+          phone: element.phone,
+          color: element.color,
+        });
+      })
+      console.log('Contact initialized successfully');
+    } catch (error) {
+      console.error('Error initializing contact:', error);
+    }
+  }
+// #endregion
+
+//region Vorlage tasks
+  async initializeTasks() {
+    try {
+          const tasksRef = collection(this.firebase, "tasks");
+          this.dummyDataTasks.forEach(async (element) => {
+            await setDoc(doc(tasksRef), {
+              title: element.title,
+              description: element.description,
+              date: element.date,
+              priority: element.priority,
+              assignedToUserId: element.assignedToUserId,
+              status: element.status,
+              category: element.category,
+              subtasks: element.subtasks,
+            });
+          })
+          console.log('Tasks initialized successfully');
+        } catch (error) {
+          console.error('Error initializing task:', error);
+        }
+  }
+//endregion 
+
+
 }

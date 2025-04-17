@@ -71,6 +71,6 @@ export const appConfig: ApplicationConfig = {
      * 
      * @see {@link getFirestore} for Firebase Firestore methods.
      */
-    provideFirestore(() => getFirestore())
+    provideFirestore(() => getFirestore()), provideFirebaseApp(() => initializeApp({ projectId: "join-77ccf", appId: "1:742793083923:web:34265575198c48ac3053e6", storageBucket: "join-77ccf.firebasestorage.app", apiKey: "AIzaSyAaPMKgXvIfY-aUFNYhyIWXWdZkmTk3coU", authDomain: "join-77ccf.firebaseapp.com", messagingSenderId: "742793083923" })), provideAuth(() => getAuth()), provideFirestore(() => getFirestore())
   ]
 };
