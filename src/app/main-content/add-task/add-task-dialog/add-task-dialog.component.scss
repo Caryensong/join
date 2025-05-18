@@ -80,7 +80,7 @@ form {
 .right_content {
     display: flex;
     flex-direction: column;
-    height: 530px;
+    height: 475px;
     width: 350px;
 }
 
@@ -377,7 +377,7 @@ select option:disabled {
     flex-direction: row;
     align-items: center;
     cursor: pointer;
-    margin-left: 8px; // Adjust the margin as needed
+    margin-left: 8px;
     position: absolute;
     right: 0;
     padding-right: 10px;
@@ -500,16 +500,16 @@ li {
     color: white;
     background-color: #2A3647;
     width: 246px;
-    position: fixed; /* Position ändern, um von unten zu fliegen */
-    bottom: -100%; /* Start außerhalb des Bildschirms */
-    left: 50%; /* In der Mitte des Bildschirms */
-    transform: translateX(-50%); /* Um es genau mittig zu platzieren */
-    transition: bottom 0.5s ease-in-out; /* Sanfter Übergang für die Bewegung */
+    position: fixed;
+    bottom: -100%;
+    left: 50%;
+    transform: translateX(-50%);
+    transition: bottom 0.5s ease-in-out;
     z-index: 50;
 }
 
 .show_report {
-    bottom: 447px; /* Die Position, an der die Box landen soll */
+    bottom: 447px;
 }
 
 .close-position{
